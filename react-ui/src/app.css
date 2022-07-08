@@ -1,0 +1,39 @@
+body {
+  color: darkblue;
+  font-size: 2em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 2em 1em 5em 2em;
+}
+
+p {
+  color: darkblue;
+}
+
+h5 {
+  color: darkblue;
+}
+
+ul {
+  font-size: 5em;
+}
+
+hr#footer {
+  margin-top: 1em;
+}
+
+.grid {
+	display: grid;
+	height: calc(6vh - 10px);
+	width: calc(12vw);
+	border-style: dashed;
+	border-width: 1px;
+	padding: 10px;
+	font-size: 1em;
+}
+
+.grid-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+}

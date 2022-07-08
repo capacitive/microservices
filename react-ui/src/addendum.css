@@ -1,0 +1,25 @@
+/* redefining body after index.css is loaded overrides it here*/
+/* body {
+  color: darkorange;
+} */
+
+p {
+  color: darkorange;
+  font-size: 1em;
+}
+
+h4 {
+  color: darkorange;
+}
+
+h5 {
+  color: darkorange;
+  display: inline-flexbox;
+  margin-bottom: 1em;
+}
+
+ul {
+  font-size: 0.5em;
+  display: inline-flexbox;
+  list-style: lower-roman;
+}
