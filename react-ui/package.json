@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve -c ./webpack.config.js -watch-files . --watch-options-stdin",
+    "start": "webpack serve -c ./webpack.config.js --watch-files . --watch-options-stdin",
     "build": "NODE_ENV=production webpack",
     "docker": "docker build -t react-ui .",
     "test": "echo \"Error: no test specified\" && exit 1"

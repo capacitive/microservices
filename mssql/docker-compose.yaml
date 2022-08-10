@@ -6,10 +6,10 @@ services:
           labels:
             com.mssql.environment: "dev"
           dockerfile: dockerfile
-        hostname: microservice-db
+        hostname: sql1
         container_name: mssql
         ports:  
-          - "15789:1433"
+          - "1433:1433"
         env_file:
           - sqlserver.env
           - sapassword.env

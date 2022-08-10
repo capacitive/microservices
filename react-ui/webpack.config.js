@@ -13,7 +13,7 @@ module.exports = {
     port: 3000,
     liveReload: true,
     open: {
-      target: ['http://localhost:3031'],
+      target: ['http://localhost:3000'],
       app: {
         name: 'firefox',
         arguments: ['--incognito', '--new-window']

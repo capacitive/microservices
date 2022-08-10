@@ -1,7 +1,7 @@
 import React from 'react';
 import './clock.css';
 
-enum Modes {
+enum Mode {
 	default,
 	timestamp,
 	stopwatch,
@@ -11,7 +11,7 @@ enum Modes {
 type Props = {
 	show?: boolean,
 	start?: boolean,
-	mode?: Modes
+	mode?: Mode
 }
 
 type State = {
@@ -30,7 +30,7 @@ class Clock extends React.Component<Props, State> {
 	}
 
 	public readonly props: Props = {
-		mode: Modes.default
+		mode: Mode.default
 	}
 
 	tick() {
@@ -63,7 +63,7 @@ class Clock extends React.Component<Props, State> {
 			this.setState({
 				running: false
 			});
-		} else if (this.props.mode === Modes.default || this.props.mode === undefined) {
+		} else if (this.props.mode === Mode.default || this.props.mode === undefined) {
 			this.state.timerID = setInterval(
 				() => this.tick(),
 				1000
@@ -106,11 +106,11 @@ class Clock extends React.Component<Props, State> {
 	}
 
 	componentDidMount() {
-		if(this.props.mode === Modes.timestamp) {	
+		if(this.props.mode === Mode.timestamp) {	
 			return;
 		}
 
-		if (this.props.mode === Modes.stopwatch) {
+		if (this.props.mode === Mode.stopwatch) {
 			let stopWatchTime = new Date();
 			stopWatchTime.setHours(0);
 			stopWatchTime.setMinutes(0);
@@ -124,7 +124,7 @@ class Clock extends React.Component<Props, State> {
 			return;
 		}
 
-		if(this.props.start && (this.props.mode === Modes.default || this.props.mode === undefined)) {
+		if(this.props.start && (this.props.mode === Mode.default || this.props.mode === undefined)) {
 			this.setState({
 				running: true
 			});
@@ -146,7 +146,7 @@ class Clock extends React.Component<Props, State> {
 		}
 		
 		let startStopButton:any;
-		if(this.props.mode === Modes.stopwatch) {
+		if(this.props.mode === Mode.stopwatch) {
 			startStopButton = <button onClick={this.handleStopWatch.bind(this)}>{this.state.running ? 'Stop' : 'Start'}</button>											
 		}
 
@@ -158,7 +158,7 @@ class Clock extends React.Component<Props, State> {
 		return (
 			<div>
 				<div className='grid-item'>
-					{this.props.mode === Modes.default || this.props.mode === undefined ? this.state.date.toLocaleTimeString() : 
+					{this.props.mode === Mode.default || this.props.mode === undefined ? this.state.date.toLocaleTimeString() : 
 `0${h - h}:${m.toString().length == 1 ? "0" + m : m}:${s.toString().length == 1 ? "0" + s : s}:${ms.toString().length == 2 ? "0" + ms : ms}`}
 				</div>
 				<div className='grid-item'>
@@ -170,4 +170,4 @@ class Clock extends React.Component<Props, State> {
 }
 
 export default Clock;
-export {Modes};
+export { Mode };

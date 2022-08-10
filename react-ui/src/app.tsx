@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./app.css";
 import Addendum from "./addendum";
 import Spinner from "./page-components/spinner";
-import Clock, { Modes } from "./page-components/clock";
+import Clock, { Mode } from "./page-components/clock";
 
 const App = () => {
 	const [data, setData] = useState<string>();
@@ -30,7 +30,7 @@ const App = () => {
 			</div>
 			<Addendum/>
 			<div className='grid'>
-				<Clock show={true} start={true} mode={Modes.stopwatch}/>
+				<Clock show={true} start={true} mode={Mode.stopwatch}/>
 				{/* {data != null ? <Clock show={true} mode={Modes.timestamp}/> : null } */}
 			</div>
 		</>
