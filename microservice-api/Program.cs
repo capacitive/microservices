@@ -1,3 +1,5 @@
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,15 +8,37 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Memoize MicroService API",
+        Description = "ASP.NET Core Memoization API Demo",
+        TermsOfService = new Uri("https://example.com/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "Mark Cafazzo",
+            Url = new Uri("https://example.com/contact")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Capacitive License",
+            Url = new Uri("https://example.com/license")
+        }
+    });
 
-builder.Services.AddCors(options => 
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
+
+builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactDevClient",
-        builder => 
+        builder =>
         {
             builder
-            .WithOrigins("http://localhost:3000")
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
         });
@@ -22,9 +46,9 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder
-            .WithOrigins("http://localhost")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+            .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+            .WithMethods("demo", "demo2")
+            .AllowAnyHeader();
         });
 });
 
@@ -40,8 +64,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseSwagger();
-app.UseSwaggerUI(options => {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroService API v1");
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Memoize MicroService API v1");
     options.RoutePrefix = String.Empty;
 });
 

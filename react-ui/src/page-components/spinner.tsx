@@ -12,7 +12,7 @@ const Spinner = (props: any) => {
     animation: 'spin 1s ease-in-out infinite',
   };
 
-  //console.log(`isInitialized: ${JSON.stringify(props.isInitialized)}`);
+  console.log(`isInitialized: ${JSON.stringify(props.isInitialized)}`);
 
   if(props.isInitialized == true) {
     return (<div style={{ ...defaultStyles, ...props.customStyles }} ></div>)

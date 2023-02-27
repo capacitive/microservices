@@ -53,3 +53,25 @@ import App from './app';
 // setInterval(tick, 1000);
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
+// native DOM Web API directly:
+// const render = () => document.getElementById('mountNode')!.innerHTML = `
+// <br/>
+// <div>
+// 	Hello HTML
+// 	<input/>
+// 	<pre>${(new Date).toLocaleTimeString()}</pre>
+// </div>
+// `
+
+// React API, which uses the DOM Web API
+// ReactDOM.render(React.createElement(
+// 	"div", 
+// 	null, 
+// 	"Hello React",
+// 	React.createElement('input', null),
+// 	React.createElement('pre', null, (new Date).toLocaleTimeString())
+// 	), 
+// 	document.getElementById('mountNode2'));
+
+// setInterval(render, 2000)

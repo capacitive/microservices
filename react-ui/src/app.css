@@ -23,8 +23,6 @@ hr#footer {
 
 .grid {
 	display: grid;
-	height: calc(6vh - 10px);
-	width: calc(12vw);
 	border-style: dashed;
 	border-width: 1px;
 	padding: 10px;
